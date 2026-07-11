@@ -91,6 +91,13 @@ ul{ list-style:none; margin:0; padding:0; }
 .btn--light{ background: var(--white); color: var(--black); }
 .btn--light:hover{ background: var(--grey-1); }
 
+/* ===================== PAGE SWITCHING ===================== */
+.page{ display: none; }
+.page.is-active{ display: block; }
+
+.nav__links a.is-active{ opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.drawer__links a.is-active{ background: rgba(255,255,255,0.1); font-weight: 500; }
+
 /* ===================== NAV ===================== */
 .nav{
   position: sticky;

@@ -1,0 +1,565 @@
+/* ===================================================================
+   HOW TO ADD YOUR PHOTOS:
+   Every photo spot in this file points to a path like "images/xxx.jpg"
+   and is marked with a comment "🖼 IMAGE PATH → images/xxx.jpg" right
+   above it (search for 🖼 to find all of them, 28 total).
+
+   All you need to do:
+   1. Create a folder named "images" next to this file.
+   2. Drop in photos using the exact filenames shown (e.g. hero.jpg,
+      logo.jpg, team-1.jpg ... team-10.jpg, art-1.jpg ... art-8.jpg).
+   No code editing required — the paths are already wired in. If you'd
+   rather use your own filenames, just change the text inside the
+   matching url("...") on that line.
+   ===================================================================
+   SxP Photos — design tokens
+   Palette: near-black stage (#0A0A0A), pure white, warm grey photo-stand-ins
+   Type: Archivo Expanded (display / nav) + Archivo (body)
+   Signature: sticky glass nav + blurred "Related Works" filmstrip
+=================================================================== */
+
+:root{
+  --black: #0a0a0a;
+  --near-black: #121212;
+  --white: #ffffff;
+  --grey-1: #d8d5d0;
+  --grey-2: #8f8b85;
+  --grey-3: #47443f;
+  --glass: rgba(255,255,255,0.55);
+  --glass-dark: rgba(10,10,10,0.55);
+
+  --font-display: 'Archivo Expanded', 'Archivo', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --pad: clamp(24px, 5vw, 88px);
+  --radius-pill: 999px;
+  --radius: 20px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+img{ max-width: 100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+h1,h2,h3,h4,p{ margin: 0; }
+ul{ list-style:none; margin:0; padding:0; }
+
+.wrap{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.eyebrow{
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  font-size: clamp(14px, 2vw, 20px);
+  margin-bottom: 12px;
+}
+.eyebrow--light{ color: var(--white); }
+
+.heading-serif{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 6.5vw, 84px);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.lead{
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.5;
+  max-width: 60ch;
+  text-align: center;
+  margin: 0 auto;
+}
+.lead strong{ font-weight: 600; }
+.lead--center{ max-width: 70ch; margin: 48px auto 0; text-align:center; }
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease;
+}
+.btn:hover{ transform: translateY(-2px); }
+.btn--light{ background: var(--white); color: var(--black); }
+.btn--light:hover{ background: var(--grey-1); }
+
+/* ===================== PAGE SWITCHING ===================== */
+/* Below 1024px (phone + tablet): every page stays visible, stacked —
+   the site behaves like one long scrollable page. Nav links smooth-
+   scroll to the target section instead of hiding the rest. */
+.page{ display: block; }
+
+/* 1024px and up (desktop): only the active page is shown — clicking
+   nav swaps which one, others are hidden entirely (no scrolling). */
+@media (min-width: 1024px){
+  .page{ display: none; }
+  .page.is-active{ display: block; }
+}
+
+.nav__links a.is-active{ opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.drawer__links a.is-active{ background: rgba(255,255,255,0.1); font-weight: 500; }
+
+/* ===================== NAV ===================== */
+.nav{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 88px;
+  padding: 0 var(--pad);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background: var(--glass);
+}
+.nav__burger{
+  flex: 0 0 auto;
+  width: 44px; height: 44px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav__burger span{
+  width: 22px; height: 2px; background: var(--black); display:block;
+}
+.nav__mark{ display:flex; align-items:center; gap: 12px; flex: 0 0 auto; }
+/* 🖼 IMAGE PATH → images/logo.jpg (or .png) — small circular logo mark */
+.nav__mark-dot{
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3a3a3a, #0a0a0a 70%);
+  background-image: url("images/logo.jpg");
+  background-size: cover;
+  background-position: center;
+  display: block;
+}
+.nav__mark-text{
+  font-family: var(--font-display); font-weight: 500; font-size: 16px;
+  display: none;
+}
+@media (min-width: 560px){ .nav__mark-text{ display: inline; } }
+
+.nav__links{
+  display: none;
+  gap: clamp(16px, 2.4vw, 36px);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 15px;
+  text-transform: capitalize;
+  margin-left: auto;
+}
+.nav__links a{ white-space: nowrap; opacity: .85; transition: opacity .2s; }
+.nav__links a:hover{ opacity: 1; }
+
+@media (min-width: 1024px){
+  .nav__links{ display: flex; }
+}
+
+/* ===================== SIDEBAR DRAWER (YouTube-style) ===================== */
+.scrim{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 190;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.scrim.is-open{ opacity: 1; pointer-events: auto; }
+
+.drawer{
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%;
+  width: min(300px, 82vw);
+  background: var(--black);
+  color: var(--white);
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform .35s cubic-bezier(.65,0,.35,1);
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+.drawer.is-open{ transform: translateX(0); }
+
+.drawer__head{
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px var(--pad, 24px);
+  position: sticky; top: 0;
+  background: var(--black);
+}
+.drawer__burger{
+  width: 40px; height: 40px;
+  border: none; background: transparent; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.drawer__burger span{ width: 22px; height: 2px; background: var(--white); display:block; }
+.drawer__brand{ font-family: var(--font-display); font-weight: 500; font-size: 16px; }
+
+.drawer__links{ display: flex; flex-direction: column; padding: 8px 0; }
+.drawer__links a{
+  display: flex; align-items: center; gap: 20px;
+  padding: 14px var(--pad, 24px);
+  font-family: var(--font-body); font-size: 15px;
+  transition: background .2s ease;
+}
+.drawer__links a:hover{ background: rgba(255,255,255,0.08); }
+.drawer__links svg{ width: 22px; height: 22px; flex: 0 0 auto; opacity: .9; }
+
+/* ===================== HERO ===================== */
+.hero{
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+/* 🖼 IMAGE PATH → images/hero.jpg — full-bleed hero background photo */
+.hero__photo{
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #3d3d3d, #0a0a0a 60%);
+  background-image: url("images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.hero__scrim{
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.05) 55%);
+}
+.hero__content{
+  position: relative;
+  padding: 0 var(--pad) 72px;
+  max-width: 900px;
+}
+.hero__headline{
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--white);
+  font-size: clamp(30px, 5.4vw, 62px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+
+/* ===================== SECTIONS ===================== */
+.section{ padding: 96px 0; }
+.section--black{ background: var(--black); color: var(--white); }
+.section--services{ background: var(--white); color: var(--black); padding-bottom: 120px; }
+.section--art{ background: var(--grey-1); color: var(--black); }
+
+.section--photo{
+  position: relative;
+  color: var(--white);
+  padding: 120px 0;
+  overflow: hidden;
+}
+.section--dark::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  z-index: 0;
+}
+.section__photo{
+  position: absolute; inset: 0;
+  background: linear-gradient(200deg, #4a4a4a, #0a0a0a 65%);
+  z-index: -1;
+}
+/* 🖼 IMAGE PATH → images/recent-cover.jpg — Recent Works page hero photo */
+.section__photo--recent{ background: linear-gradient(200deg,#565048,#0a0a0a 65%); background-image: url("images/recent-cover.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/projects-cover.jpg — Previous Projects page hero photo */
+.section__photo--projects{ background: linear-gradient(200deg,#3f4650,#0a0a0a 65%); background-image: url("images/projects-cover.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/products-cover.jpg — Products page hero photo */
+.section__photo--products{ background: linear-gradient(200deg,#4a4038,#0a0a0a 65%); background-image: url("images/products-cover.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/about-cover.jpg — About page hero photo */
+.section__photo--about{ background: linear-gradient(200deg,#555,#0a0a0a 65%); background-image: url("images/about-cover.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/services-cover.jpg — Genuine Services page hero photo */
+.section__photo--services{ background: linear-gradient(200deg,#4a4438,#0a0a0a 65%); background-image: url("images/services-cover.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/services-cta.jpg — Genuine Services closing CTA photo */
+.section__photo--services-cta{ background: linear-gradient(200deg,#3d453d,#0a0a0a 65%); background-image: url("images/services-cta.jpg"); background-size: cover; background-position: center; }
+
+.wrap--overlay{ position: relative; z-index: 1; }
+
+/* ===================== RELATED WORKS SLIDER ===================== */
+.slider{ margin-top: 64px; }
+.slider__bar{
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  background: var(--glass);
+  color: var(--black);
+  text-align: center;
+  padding: 18px 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(20px, 2.6vw, 32px);
+}
+.slider__track{
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.slider__track::-webkit-scrollbar{ display:none; }
+.slide{
+  position: relative;
+  flex: 0 0 min(85vw, 640px);
+  aspect-ratio: 16/10;
+  scroll-snap-align: start;
+}
+/* 🖼 IMAGE PATH → images/related-1.jpg — first Related Works slide photo */
+.slide__photo{
+  position:absolute; inset:0;
+  background: linear-gradient(160deg,#5c5c5c,#111 70%);
+  background-image: url("images/related-1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+/* 🖼 IMAGE PATH → images/related-2.jpg */
+.slide__photo--b{ background: linear-gradient(160deg,#6b6355,#111 70%); background-image: url("images/related-2.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/related-3.jpg */
+.slide__photo--c{ background: linear-gradient(160deg,#4c545c,#111 70%); background-image: url("images/related-3.jpg"); background-size: cover; background-position: center; }
+.slide__caption{
+  position: absolute; left: 28px; bottom: 24px;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-shadow: 0 2px 20px rgba(0,0,0,.5);
+}
+.slide__caption p:first-child{ font-size: clamp(20px,3vw,32px); }
+.slide__caption p:last-child{ font-size: 14px; opacity: .8; }
+
+/* ===================== RECENT WORKS FEATURE ===================== */
+.feature{
+  position: relative;
+  color: var(--white);
+  padding: 64px var(--pad) 48px;
+  overflow: hidden;
+}
+/* 🖼 IMAGE PATH → images/feature-photo.jpg — WAPS/happening feature photo */
+.feature__photo{
+  position: absolute; inset: 0;
+  background: linear-gradient(200deg,#4a3d4a,#0a0a0a 65%);
+  z-index: -1;
+}
+.feature__tag{
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 24px;
+}
+.feature__waps{
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.feature__waps span{ margin: 0 8px; font-weight: 300; text-transform: none; }
+.feature__waps em{
+  font-family: 'Caveat', cursive;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  font-size: 1.3em;
+}
+.feature__by{ font-family: var(--font-display); font-weight: 300; font-size: 14px; opacity: .8; }
+.feature__body{
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(20px,3vw,28px);
+  max-width: 640px;
+}
+.feature-long{
+  background: #d9d9d9;
+  color: var(--black);
+  padding: 56px var(--pad) 72px;
+}
+.feature-long p{
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 auto 24px;
+}
+.feature-long strong{ font-weight: 700; }
+
+/* ===================== SERVICES LIST ===================== */
+.services{ margin: 56px 0; }
+.services__row{
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 32px 28px;
+  background: #efefef;
+  border: 1px solid var(--black);
+  margin-top: -1px;
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(18px, 2.6vw, 28px);
+  color: var(--black);
+  transition: background .2s ease;
+}
+.services__row:hover{ background: #e2e2e2; }
+.services__plus{ font-size: 22px; font-weight: 300; color: var(--grey-3); }
+
+/* ===================== ART MOSAIC ===================== */
+.mosaic{
+  margin-top: 56px;
+  padding: 0 var(--pad);
+  column-count: 2;
+  column-gap: 12px;
+}
+@media (min-width: 720px){ .mosaic{ column-count: 3; } }
+/* 🖼 IMAGE PATHS → images/art-1.jpg through images/art-8.jpg — Art Collections mosaic tiles.
+   Each tile is the Nth .mosaic__tile in index.html (in source order). Target each one like:
+   .mosaic__tile:nth-child(1){ background-image: url("images/art-1.jpg"); background-size: cover; background-position: center; }
+   .mosaic__tile:nth-child(2){ background-image: url("images/art-2.jpg"); background-size: cover; background-position: center; }
+   ...through nth-child(8) for images/art-8.jpg */
+.mosaic__tile{
+  break-inside: avoid;
+  margin-bottom: 12px;
+  aspect-ratio: 1 / var(--h, 1);
+  border-radius: 6px;
+  background: linear-gradient(145deg, #444 0%, #1a1a1a 60%);
+}
+.mosaic__tile:nth-child(1){ background-image: url("images/art-1.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(2){ background-image: url("images/art-2.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(3){ background-image: url("images/art-3.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(4){ background-image: url("images/art-4.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(5){ background-image: url("images/art-5.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(6){ background-image: url("images/art-6.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(7){ background-image: url("images/art-7.jpg"); background-size: cover; background-position: center; }
+.mosaic__tile:nth-child(8){ background-image: url("images/art-8.jpg"); background-size: cover; background-position: center; }
+
+/* ===================== PROJECTS / PRODUCTS ===================== */
+.projects{
+  position: relative; z-index: 1;
+  padding: 0 var(--pad);
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 860px){
+  .projects{ grid-template-columns: repeat(3, 1fr); }
+  .projects--single{ grid-template-columns: minmax(0,560px); }
+}
+.project{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.project__photo{ aspect-ratio: 4/3; background: linear-gradient(160deg,#4a4a4a,#111 70%); }
+/* 🖼 IMAGE PATH → images/project-1.jpg — "Anak Tangga" cover photo */
+.project__photo--1{ background: linear-gradient(160deg,#3a2f2f,#111 70%); background-image: url("images/project-1.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/project-2.jpg — "Sampai Hari Esok" cover photo */
+.project__photo--2{ background: linear-gradient(160deg,#33333d,#111 70%); background-image: url("images/project-2.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/project-3.jpg — "can we just chats?" cover photo */
+.project__photo--3{ background: linear-gradient(160deg,#463d33,#111 70%); background-image: url("images/project-3.jpg"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/product-1.jpg — "Smart Café Ordering System (Products page)" cover photo */
+.project__photo--4{ background: linear-gradient(160deg,#33403d,#111 70%); background-image: url("images/product-1.jpg"); background-size: cover; background-position: center; }
+.project__body{ padding: 28px; }
+.project__body h3{
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 24px; margin-bottom: 12px;
+}
+.project__body p{ font-size: 15px; line-height: 1.6; opacity: .85; margin-bottom: 18px; }
+.tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+.tags--stack{ margin-top: 10px; }
+.tags span{
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.soon{
+  grid-column: 1 / -1;
+  font-family: var(--font-display); font-weight: 300; opacity: .5;
+  padding-top: 8px;
+}
+
+/* ===================== TEAM ===================== */
+.team{
+  margin-top: 56px;
+  padding: 0 var(--pad);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 720px){ .team{ grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1180px){ .team{ grid-template-columns: repeat(3, 1fr); } }
+.team__card{ color: var(--white); }
+.team__photo{
+  aspect-ratio: 4/3;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  background: linear-gradient(150deg,#4a4a4a,#161616 70%);
+}
+/* 🖼 IMAGE PATH → images/team-1.jpg — Angela Julianne */
+.team__photo--1{ background: linear-gradient(150deg,#5c4b3f,#161616 70%); background-image: url("Photo/Ju.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-2.jpg — Gregorius Abe */
+.team__photo--2{ background: linear-gradient(150deg,#3f4a5c,#161616 70%); background-image: url("Photo/Abe.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-3.jpg — Itaf Bareeq */
+.team__photo--3{ background: linear-gradient(150deg,#4b5c3f,#161616 70%); background-image: url("Photo/Itaf.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-4.jpg — Shane Ali */
+.team__photo--4{ background: linear-gradient(150deg,#5c3f4f,#161616 70%); background-image: url("Photo/Shane.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-5.jpg — Ray Aiden */
+.team__photo--5{ background: linear-gradient(150deg,#3f5c58,#161616 70%); background-image: url("Photo/Ray.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-6.jpg — Indah Irka */
+.team__photo--6{ background: linear-gradient(150deg,#5c563f,#161616 70%); background-image: url("Photo/Indah.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-7.jpg — Filza Hamiza */
+.team__photo--7{ background: linear-gradient(150deg,#463f5c,#161616 70%); background-image: url("Photo/Filza.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-8.jpg — Sevanno Arya */
+.team__photo--8{ background: linear-gradient(150deg,#5c3f3f,#161616 70%); background-image: url("Photo/Vanno.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-9.jpg — Keyra Allodya */
+.team__photo--9{ background: linear-gradient(150deg,#3f4b5c,#161616 70%); background-image: url("Photo/Keyra.webp"); background-size: cover; background-position: center; }
+/* 🖼 IMAGE PATH → images/team-10.jpg — Queenesya */
+.team__photo--10{ background: linear-gradient(150deg,#4f5c3f,#161616 70%); background-image: url("Photo/Queen.webp"); background-size: cover; background-position: center; }
+.team__card h4{ font-family: var(--font-display); font-weight: 500; font-size: 22px; margin-bottom: 4px; }
+.team__role{ font-size: 13px; opacity: .6; margin-bottom: 14px; }
+.team__quote{ font-family: var(--font-display); font-weight: 400; font-size: 16px; margin-bottom: 10px; }
+.team__bio{ font-size: 14px; line-height: 1.6; opacity: .8; }
+
+/* ===================== FOOTER ===================== */
+.footer{
+  background: var(--black);
+  color: var(--white);
+  padding: 56px var(--pad) 48px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+.footer__marks{
+  display: flex; justify-content: center; gap: 12px; margin-bottom: 18px;
+}
+.footer__marks span{
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(150deg,#4a4a4a,#161616 70%);
+  display: block;
+}
+
+/* ===================== MOTION PREFERENCE ===================== */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  .btn, .services__row, .menu{ transition: none; }
+}

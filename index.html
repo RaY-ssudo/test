@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SxP Photos — Embrace the vibes you create in moments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@300;400;500;600;700&family=Archivo:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#home" class="nav__mark" aria-label="SxP Photos home">
+    <span class="nav__mark-dot"></span>
+    <span class="nav__mark-text">SxP Photos</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#recent">Discover Recent Works</a>
+    <a href="#products">Products</a>
+    <a href="#services">Genuine Services</a>
+    <a href="#art">Art Collections</a>
+    <a href="#projects">Previous Projects</a>
+    <a href="#team">Our Team</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<!-- SIDEBAR DRAWER -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="menu" aria-hidden="true">
+  <div class="drawer__head">
+    <button class="drawer__burger" id="menuClose" aria-label="Close menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="drawer__brand">SxP Photos</span>
+  </div>
+  <nav class="drawer__links">
+    <a href="#home" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9h14v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Home
+    </a>
+    <a href="#recent" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 9l6 3-6 3V9z" fill="currentColor"/></svg>
+      Discover recent works
+    </a>
+    <a href="#products" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
+      Products
+    </a>
+    <a href="#services" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Genuine Services
+    </a>
+    <a href="#art" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.5v17M3.5 12h17" stroke="currentColor" stroke-width="1.2" opacity=".6"/></svg>
+      Art Collections
+    </a>
+    <a href="#projects" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Previous Projects
+    </a>
+    <a href="#team" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="8.5" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="10.5" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M3 19c.6-3 2.6-4.8 5.5-4.8S13.9 16 14.5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14.8 14.9c2.3.2 3.8 1.7 4.2 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Our Team
+    </a>
+    <a href="#about" data-menu-link>
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5.5M12 8v.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      About
+    </a>
+  </nav>
+</aside>
+
+<main>
+
+  <div class="page" id="page-home" data-page="home">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__photo" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="eyebrow eyebrow--light">SxP Photos</p>
+      <h1 class="hero__headline">Embrace the vibes you create in moments — Documentation Archive</h1>
+      <a href="#recent" class="btn btn--light">Start a Project</a>
+    </div>
+  </section>
+
+  <!-- DESCRIPTION + RELATED WORKS -->
+  <section class="section section--black">
+    <div class="wrap">
+      <p class="heading-serif">Description</p>
+      <p class="lead">Sometimes even a pen can make memories. We always put it in front of our works, presenting a visual of a frame which <strong>reminds, states, classifies, declares</strong>, or serves a thing to whoever merges to it.</p>
+    </div>
+    <div class="slider" id="relatedSlider">
+      <div class="slider__bar">
+        <span>Related Works</span>
+      </div>
+      <div class="slider__track">
+        <div class="slide">
+          <div class="slide__photo"></div>
+          <div class="slide__caption">
+            <p>Family Drama in Annual Meet</p>
+            <p>2026 Collection</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide__photo slide__photo--b"></div>
+          <div class="slide__caption">
+            <p>Quiet Hours</p>
+            <p>2026 Collection</p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide__photo slide__photo--c"></div>
+          <div class="slide__caption">
+            <p>After the Reunion</p>
+            <p>2026 Collection</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="page-recent" data-page="recent">
+  <!-- DISCOVER RECENT WORKS -->
+  <section class="section section--photo">
+    <div class="section__photo section__photo--recent"></div>
+    <div class="wrap wrap--overlay">
+      <p class="heading-serif">Recent Works</p>
+      <p class="lead">Take a closer look at the projects we've built and see how every idea is transformed into a purposeful experience.</p>
+    </div>
+  </section>
+  <section class="feature">
+    <div class="feature__photo"></div>
+    <div class="feature__tag">
+      <span class="feature__waps">WAPS<span>/</span><em>happening</em></span>
+      <span class="feature__by">SxP Films</span>
+    </div>
+    <p class="feature__body">Record breaker — we finally adapt the playful tone on "can we just chats?"</p>
+  </section>
+  <section class="feature-long">
+    <p>With "<strong>can we just chats?</strong>", we explored a more playful and energetic approach to storytelling. Rather than opening with a serious narrative, we focused on the genuine chemistry between three teenagers during a sleepover, capturing the laughter, spontaneity, and carefree moments that make friendships feel real and relatable.</p>
+    <p>To strengthen this atmosphere, we embraced dynamic camera movements, vibrant lighting, and natural performances that allowed every interaction to unfold effortlessly. The visual style was intentionally crafted to reflect the excitement and unpredictability of youth while creating an engaging viewing experience from the very first scene.</p>
+    <p>This playful tone serves a greater purpose than entertainment alone. By immersing audiences in the characters' joyful moments, the film creates a meaningful contrast as the story gradually shifts toward its central message about how social media can quietly distance people — even when they're sharing the same space.</p>
+  </section>
+  </div>
+
+
+  <div class="page" id="page-services" data-page="services">
+  <!-- GENUINE SERVICES -->
+  <section class="section section--photo section--dark">
+    <div class="section__photo section__photo--services"></div>
+    <div class="wrap wrap--overlay">
+      <p class="heading-serif">Genuine Services</p>
+      <p class="lead">Creating seamless digital experiences through technology, design, and creativity.</p>
+    </div>
+  </section>
+  <section class="section section--black" style="padding-top:0;">
+    <ul class="services">
+      <li class="services__row"><span>Photography</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>Videography</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>Advertising</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>UI/UX Design</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>Web Development</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>App Development</span><span class="services__plus">+</span></li>
+      <li class="services__row"><span>Brand Identity</span><span class="services__plus">+</span></li>
+    </ul>
+  </section>
+  <section class="section section--photo section--dark">
+    <div class="section__photo section__photo--services-cta"></div>
+    <div class="wrap wrap--overlay">
+      <p class="lead lead--center">Great project begins with a simple idea. Let us help you turn yours into something <strong>extraordinary</strong>.</p>
+    </div>
+  </section>
+  </div>
+
+
+  <div class="page" id="page-art" data-page="art">
+  <!-- ART COLLECTIONS -->
+  <section class="section section--art">
+    <div class="wrap">
+      <p class="heading-serif">Art Collections</p>
+      <p class="lead">A running archive of visual studies — frames we return to, colors we keep, and moments worth revisiting.</p>
+    </div>
+    <div class="mosaic" id="mosaic">
+      <div class="mosaic__tile" style="--h:1"></div>   <!-- art-1.jpg -->
+      <div class="mosaic__tile" style="--h:1.4"></div> <!-- art-2.jpg -->
+      <div class="mosaic__tile" style="--h:0.8"></div> <!-- art-3.jpg -->
+      <div class="mosaic__tile" style="--h:1.2"></div> <!-- art-4.jpg -->
+      <div class="mosaic__tile" style="--h:1"></div>   <!-- art-5.jpg -->
+      <div class="mosaic__tile" style="--h:1.6"></div> <!-- art-6.jpg -->
+      <div class="mosaic__tile" style="--h:0.9"></div> <!-- art-7.jpg -->
+      <div class="mosaic__tile" style="--h:1.1"></div> <!-- art-8.jpg -->
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="page-projects" data-page="projects">
+  <!-- PREVIOUS PROJECTS -->
+  <section class="section section--photo section--dark">
+    <div class="section__photo section__photo--projects"></div>
+    <div class="wrap wrap--overlay">
+      <p class="heading-serif">Our Projects</p>
+      <p class="lead">Every project reflects our commitment to innovation, creativity, and attention to detail. Discover how we've helped bring ideas to life through technology and visual storytelling.</p>
+    </div>
+    <div class="projects">
+      <article class="project">
+        <div class="project__photo project__photo--1"></div>
+        <div class="project__body">
+          <h3>Anak Tangga</h3>
+          <p>A horror story where an ordinary part-time job becomes anything but ordinary.</p>
+          <div class="tags"><span>Sony a6400</span><span>Zoom H5</span><span>mp4</span></div>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project__photo project__photo--2"></div>
+        <div class="project__body">
+          <h3>Sampai Hari Esok</h3>
+          <p>A heartfelt story about people, choices, and the moments that bring them together.</p>
+          <div class="tags"><span>Sony a6400</span><span>Zoom H5</span><span>mp4</span></div>
+        </div>
+      </article>
+      <article class="project">
+        <div class="project__photo project__photo--3"></div>
+        <div class="project__body">
+          <h3>can we just chats?</h3>
+          <p>A drama exploring how technology and social media shape the lives of today's youth.</p>
+          <div class="tags"><span>Sony a6400</span><span>Zoom H5</span><span>mp4</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="page-products" data-page="products">
+  <!-- PRODUCTS -->
+  <section class="section section--photo section--dark">
+    <div class="section__photo section__photo--products"></div>
+    <div class="wrap wrap--overlay">
+      <p class="heading-serif">Products</p>
+      <p class="lead">Built with innovation and purpose, our products are designed to solve problems and create lasting value.</p>
+    </div>
+    <div class="projects projects--single">
+      <article class="project">
+        <div class="project__photo project__photo--4"></div>
+        <div class="project__body">
+          <h3>Smart Café Ordering System</h3>
+          <p>A modern digital ordering platform that allows customers to browse menus, place orders, and complete payments directly from their smartphones.</p>
+          <div class="tags"><span>Digital Menu</span><span>Online Ordering</span><span>Secure Payment Integration</span></div>
+          <div class="tags tags--stack"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span></div>
+        </div>
+      </article>
+      <p class="soon">Soon…</p>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="page-about" data-page="about">
+  <!-- ABOUT -->
+  <section class="section section--photo section--dark">
+    <div class="section__photo section__photo--about"></div>
+    <div class="wrap wrap--overlay">
+      <p class="heading-serif">Everything… About Us</p>
+      <p class="lead">We are a technology company passionate about building innovative web, mobile, and photography solutions. By combining creativity with modern technology, we create simple, reliable, and impactful digital experiences that empower individuals and businesses.</p>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" id="page-team" data-page="team">
+  <!-- OUR TEAM -->
+  <section class="section section--black">
+    <div class="wrap">
+      <p class="heading-serif">Our Team</p>
+    </div>
+    <div class="team">
+      <article class="team__card">
+        <div class="team__photo team__photo--1"></div>
+        <h4>Angela Julianne</h4>
+        <p class="team__role">Memory keeper — Art director</p>
+        <p class="team__quote">"Directing an art is never just about raw creativity but to make my dreams come true."</p>
+        <p class="team__bio">I'm someone who sees everything as an art. I make my imagination and my paths become my pure art of life.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--2"></div>
+        <h4>Gregorius Abe</h4>
+        <p class="team__role">Brand strategist — HR manager</p>
+        <p class="team__quote">"Building impact is never just about creating, it also maintaining, and improving."</p>
+        <p class="team__bio">I'm someone who is always forecasting after deep analysis. My daily point of living is linked to information, communication, and development.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--3"></div>
+        <h4>Itaf Bareeq</h4>
+        <p class="team__role">Content creation — Data entry/processing</p>
+        <p class="team__quote">"Clearance move is never always perfect in front."</p>
+        <p class="team__bio">I'm someone who loves to invent something and putting myself in high risk, high reward situations.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--4"></div>
+        <h4>Shane Ali</h4>
+        <p class="team__role">Designer &amp; illustrator — Parts of IT faction</p>
+        <p class="team__quote">"Cry and cave in, try anyway."</p>
+        <p class="team__bio">Growing up as someone who loves learning new things — from art to technology, aiming to use creativity and knowledge to help others.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--5"></div>
+        <h4>Ray Aiden</h4>
+        <p class="team__role">Tech Emerging — IT Consultant</p>
+        <p class="team__quote">"Life doesn't revolve around you, so chase your dreams."</p>
+        <p class="team__bio">A forward-thinking technophile driven by a passion for emerging technologies and the joy of digital innovation.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--6"></div>
+        <h4>Indah Irka</h4>
+        <p class="team__role">Public relations — Networking system</p>
+        <p class="team__quote">"Being successful starts with always adding 1% progress every day."</p>
+        <p class="team__bio">Keeping interaction with a bunch of personalities drives my creational side of making deals and increasing awareness.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--7"></div>
+        <h4>Filza Hamiza</h4>
+        <p class="team__role">Campaign manager</p>
+        <p class="team__quote">"Finish what you started."</p>
+        <p class="team__bio">Someone who remains socially active — creating an environment where I can meet new and valuable individuals is one of the reasons behind this major step I am taking.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--8"></div>
+        <h4>Sevanno Arya</h4>
+        <p class="team__role">Moment maker</p>
+        <p class="team__quote">"There is a crack in everything — that is how the light gets in."</p>
+        <p class="team__bio">An art-inspired moment maker. I capture unseen yet impactful details, transforming creative ideas into meaningful visual and memorable stories.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--9"></div>
+        <h4>Keyra Allodya</h4>
+        <p class="team__role">Content creating — Copy writer</p>
+        <p class="team__quote">"Making one's parents proud through one's own talent."</p>
+        <p class="team__bio">Operating within the digital sphere enables me to consistently create high-quality brand assets.</p>
+      </article>
+      <article class="team__card">
+        <div class="team__photo team__photo--10"></div>
+        <h4>Queenesya</h4>
+        <p class="team__role">Brand strategist — HR manager</p>
+        <p class="team__quote">"Building impact is never just about creating, it also maintaining, and improving."</p>
+        <p class="team__bio">I'm someone who is always forecasting after deep analysis. My daily point of living is linked to information, communication, and development.</p>
+      </article>
+    </div>
+  </section>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__marks" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+  <p>© 2026 SxP</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
